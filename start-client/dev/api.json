@@ -25,6 +25,22 @@
     "type": "hierarchical-multi-select",
     "values": [
       {
+        "name": "Taikang Tools",
+        "values": [
+          {
+            "id": "tkp-tools",
+            "name": "Taikang Pension Dev Tools",
+            "description": "泰康养老相关开发工具集合",
+            "_links": {
+              "reference": {
+                "href": "https://docs.spring.io/spring-boot/docs/{bootVersion}/reference/htmlsingle/#using-boot-devtools",
+                "templated": true
+              }
+            }
+          }
+        ]
+      },
+      {
         "name": "Developer Tools",
         "values": [
           {

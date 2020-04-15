@@ -38,7 +38,7 @@ const Fields = ({
         <div className='left'>
           <Warnings />
           <div className='col-sticky'>
-            <div className='colset'>
+            {/* <div className='colset'>
               <div className='left'>
                 <Control text='Project'>
                   <Radio
@@ -63,7 +63,7 @@ const Fields = ({
                   />
                 </Control>
               </div>
-            </div>
+            </div> */}
 
             <Control text='Spring Boot'>
               <Radio
@@ -175,9 +175,9 @@ const Fields = ({
         >
           Explore
         </Button>
-        <Button id='share-project' onClick={onShare}>
+        {/* <Button id='share-project' onClick={onShare}>
           Share...
-        </Button>
+        </Button> */}
       </Actions>
     </>
   )

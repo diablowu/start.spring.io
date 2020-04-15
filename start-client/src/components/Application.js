@@ -104,8 +104,8 @@ export default function Application() {
 
   return (
     <>
-      <BodyClassName className={theme} />
-      <Suspense fallback=''>
+      {/* <BodyClassName className={theme} /> */}
+      {/* <Suspense fallback=''>
         <HotKeys
           onSubmit={() => {
             if (get(buttonSubmit, 'current')) {
@@ -124,14 +124,15 @@ export default function Application() {
           }}
           onEscape={onEscape}
         />
-      </Suspense>
-      <SideLeft />
+      </Suspense> */}
+      {/* <SideLeft /> */}
       <div id='main'>
-        <Header />
+        {/* <Header /> */}
         <hr className='divider' />
         <Form onSubmit={onSubmit}>
           {!complete ? (
-            <Loading />
+            // <Loading />
+            <></>
           ) : (
             <>
               <Fields
@@ -148,7 +149,7 @@ export default function Application() {
           )}
         </Form>
       </div>
-      <SideRight />
+      {/* <SideRight />
       <Suspense fallback=''>
         <Share open={shareOpen || false} shareUrl={share} onClose={onEscape} />
         <Explore
@@ -157,7 +158,7 @@ export default function Application() {
           open={exploreOpen || false}
           onClose={onEscape}
         />
-      </Suspense>
+      </Suspense> */}
     </>
   )
 }
