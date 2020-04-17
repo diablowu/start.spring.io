@@ -16,17 +16,18 @@
 
 package io.spring.start.site;
 
-import java.io.IOException;
-import java.nio.file.Files;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.spring.initializr.metadata.InitializrProperties;
 import io.spring.initializr.versionresolver.DependencyManagementVersionResolver;
 import io.spring.initializr.web.support.InitializrMetadataUpdateStrategy;
+import io.spring.start.site.config.MetadataConfig;
 import io.spring.start.site.project.ProjectDescriptionCustomizerConfiguration;
 import io.spring.start.site.support.CacheableDependencyManagementVersionResolver;
 import io.spring.start.site.support.StartInitializrMetadataUpdateStrategy;
 import io.spring.start.site.web.HomeController;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -46,38 +47,37 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAutoConfiguration
 @SpringBootConfiguration
-@Import(ProjectDescriptionCustomizerConfiguration.class)
+@Import({ProjectDescriptionCustomizerConfiguration.class, MetadataConfig.class})
 @EnableCaching
 @EnableAsync
 public class StartApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(StartApplication.class, args);
-	}
-
-	@Bean
-	public InitializrMetadataUpdateStrategy startMetadataUpdateStrategy(RestTemplateBuilder restTemplateBuilder,
-			ObjectMapper objectMapper) {
-		return new StartInitializrMetadataUpdateStrategy(restTemplateBuilder.build(), objectMapper);
-	}
-
-	@Bean
-	public HomeController homeController() {
-		return new HomeController();
-	}
-
-	@Bean
-	public ErrorPageRegistrar errorPageRegistrar() {
-		return (registry) -> {
-			registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"));
-			registry.addErrorPages(new ErrorPage("/error/index.html"));
-		};
-	}
-
-	@Bean
-	public DependencyManagementVersionResolver dependencyManagementVersionResolver() throws IOException {
-		return new CacheableDependencyManagementVersionResolver(DependencyManagementVersionResolver
-				.withCacheLocation(Files.createTempDirectory("version-resolver-cache-")));
-	}
-
+    
+    public static void main(String[] args) {
+        SpringApplication.run(StartApplication.class, args);
+    }
+    
+    @Bean
+    public InitializrMetadataUpdateStrategy startMetadataUpdateStrategy(RestTemplateBuilder restTemplateBuilder,
+            ObjectMapper objectMapper) {
+        return new StartInitializrMetadataUpdateStrategy(restTemplateBuilder.build(), objectMapper);
+    }
+    
+    @Bean
+    public HomeController homeController() {
+        return new HomeController();
+    }
+    
+    @Bean
+    public ErrorPageRegistrar errorPageRegistrar() {
+        return (registry) -> {
+            registry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"));
+            registry.addErrorPages(new ErrorPage("/error/index.html"));
+        };
+    }
+    
+    @Bean
+    public DependencyManagementVersionResolver dependencyManagementVersionResolver() throws IOException {
+        return new CacheableDependencyManagementVersionResolver(DependencyManagementVersionResolver
+                .withCacheLocation(Files.createTempDirectory("version-resolver-cache-")));
+    }
 }

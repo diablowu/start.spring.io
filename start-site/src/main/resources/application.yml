@@ -1290,48 +1290,27 @@ initializr:
               href: https://github.com/alibaba/spring-cloud-alibaba/tree/master/spring-cloud-alibaba-examples/sentinel-example/sentinel-core-example
               description: Sentinel Example
   types:
-    - name: Maven Project
+    - name: 单模块
       id: maven-project
-      description: Generate a Maven based project archive.
+      description: 单模块的maven项目
       tags:
         build: maven
         format: project
       default: true
       action: /starter.zip
-    - name: Maven POM
-      id: maven-build
-      description: Generate a Maven pom.xml.
+    - name: 多模块
+      id: maven-module-project
+      description: 多模块的maven项目，聚合器/父模块
       tags:
         build: maven
-        format: build
-      default: false
-      action: /pom.xml
-    - name: Gradle Project
-      id: gradle-project
-      description: Generate a Gradle based project archive.
-      tags:
-        build: gradle
         format: project
       default: false
       action: /starter.zip
-    - name: Gradle Config
-      id: gradle-build
-      description: Generate a Gradle build file.
-      tags:
-        build: gradle
-        format: build
-      default: false
-      action: /build.gradle
   packagings:
     - name: Jar
       id: jar
       default: true
-    - name: War
-      id: war
-      default: false
   javaVersions:
-    - id: 14
-      default: false
     - id: 11
       default: false
     - id: 1.8
@@ -1341,19 +1320,19 @@ initializr:
     - name: Java
       id: java
       default: true
-    - name: Kotlin
-      id: kotlin
-      default: false
-    - name: Groovy
-      id: groovy
-      default: false
   bootVersions:
-    - name : Latest SNAPSHOT
-      id: 2.2.0.BUILD-SNAPSHOT
+    - name : 2.2.6
+      id: 2.2.6.RELEASE
       default: false
-    - name : 2.1.1.
-      id: 2.1.1.RELEASE
+    - name : 2.1.13
+      id: 2.1.13.RELEASE
       default: true
+
+web:
+  initializr:
+    group-id: com.taikang.pension
+    artifact-id: demo-project
+    version: 0.0.1-SNAPSHOT
 
 ---
 
