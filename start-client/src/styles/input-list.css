@@ -1,0 +1,12 @@
+.input-list{
+    list-style: none;
+}
+
+.input-list a{
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.input-list a:hover{
+    color: #6db33f;
+}

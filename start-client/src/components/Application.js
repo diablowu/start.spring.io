@@ -104,61 +104,60 @@ export default function Application() {
 
   return (
     <>
-      {/* <BodyClassName className={theme} /> */}
-      {/* <Suspense fallback=''>
-        <HotKeys
-          onSubmit={() => {
-            if (get(buttonSubmit, 'current')) {
-              buttonSubmit.current.click()
-            }
-          }}
-          onExplore={() => {
-            if (get(buttonExplore, 'current')) {
-              buttonExplore.current.click()
-            }
-          }}
-          onDependency={() => {
-            if (get(buttonDependency, 'current')) {
-              buttonDependency.current.click()
-            }
-          }}
-          onEscape={onEscape}
-        />
-      </Suspense> */}
-      {/* <SideLeft /> */}
-      <div id='main'>
-        {/* <Header /> */}
-        <hr className='divider' />
-        <Form onSubmit={onSubmit}>
-          {!complete ? (
-            // <Loading />
-            <></>
-          ) : (
-            <>
-              <Fields
-                onSubmit={onSubmit}
-                onShare={onShare}
-                onExplore={onExplore}
-                refExplore={buttonExplore}
-                refSubmit={buttonSubmit}
-                refDependency={buttonDependency}
-                generating={generating}
-              />
-              <DependencyDialog onClose={onEscape} />
-            </>
-          )}
-        </Form>
-      </div>
-      {/* <SideRight />
-      <Suspense fallback=''>
-        <Share open={shareOpen || false} shareUrl={share} onClose={onEscape} />
-        <Explore
-          projectName={`${get(values, 'meta.artifact')}.zip`}
-          blob={blob}
-          open={exploreOpen || false}
-          onClose={onEscape}
-        />
-      </Suspense> */}
-    </>
+    <BodyClassName className={theme} />
+    <Suspense fallback=''>
+      <HotKeys
+        onSubmit={() => {
+          if (get(buttonSubmit, 'current')) {
+            buttonSubmit.current.click()
+          }
+        }}
+        onExplore={() => {
+          if (get(buttonExplore, 'current')) {
+            buttonExplore.current.click()
+          }
+        }}
+        onDependency={() => {
+          if (get(buttonDependency, 'current')) {
+            buttonDependency.current.click()
+          }
+        }}
+        onEscape={onEscape}
+      />
+    </Suspense>
+    <SideLeft />
+    <div id='main'>
+      <Header />
+      <hr className='divider' />
+      <Form onSubmit={onSubmit}>
+        {!complete ? (
+          <Loading />
+        ) : (
+          <>
+            <Fields
+              onSubmit={onSubmit}
+              onShare={onShare}
+              onExplore={onExplore}
+              refExplore={buttonExplore}
+              refSubmit={buttonSubmit}
+              refDependency={buttonDependency}
+              generating={generating}
+            />
+            <DependencyDialog onClose={onEscape} />
+          </>
+        )}
+      </Form>
+    </div>
+    <SideRight />
+    <Suspense fallback=''>
+      <Share open={shareOpen || false} shareUrl={share} onClose={onEscape} />
+      <Explore
+        projectName={`${get(values, 'meta.artifact')}.zip`}
+        blob={blob}
+        open={exploreOpen || false}
+        onClose={onEscape}
+      />
+    </Suspense>
+  </>
   )
 }

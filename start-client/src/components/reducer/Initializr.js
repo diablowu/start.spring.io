@@ -18,6 +18,7 @@ export const defaultInitializrContext = {
       packaging: '',
       packageName: '',
       java: '',
+      modules:['parent']
     },
     dependencies: [],
   },

@@ -7,12 +7,16 @@ import Control from './Control'
 import FieldError from './FieldError'
 import FieldInput from './FieldInput'
 import FieldRadio from './FieldRadio'
+import InputList from './InputList'
 import Warnings from './Warnings'
 import useWindowsUtils from '../../utils/WindowsUtils'
 import { AppContext } from '../../reducer/App'
 import { Button, Radio } from '../form'
 import { Dependency } from '../dependency'
 import { InitializrContext } from '../../reducer/Initializr'
+
+import TagsInput from 'react-tagsinput'
+
 
 const Fields = ({
   onSubmit,
@@ -38,7 +42,7 @@ const Fields = ({
         <div className='left'>
           <Warnings />
           <div className='col-sticky'>
-            {/* <div className='colset'>
+            {<div className='colset'>
               <div className='left'>
                 <Control text='Project'>
                   <Radio
@@ -63,7 +67,7 @@ const Fields = ({
                   />
                 </Control>
               </div>
-            </div> */}
+            </div>}
 
             <Control text='Spring Boot'>
               <Radio
@@ -149,8 +153,20 @@ const Fields = ({
                   update({ meta: { java: value } })
                 }}
               />
+
+            <InputList
+                id='input-moduleList'
+                value={['adsf','adfa']}
+                text='Modules'
+                onChange={event => {
+                  update({ meta: { packageName: event.target.value } })
+                }}
+              />
+
+
             </Control>
           </div>
+
         </div>
         <div className='right'>
           <Dependency refButton={refDependency} />

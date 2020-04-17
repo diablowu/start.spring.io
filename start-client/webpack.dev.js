@@ -15,21 +15,25 @@ const config = {
     historyApiFallback: true,
     compress: true,
     open: false,
-    before: function(app, server, compiler) {
-      app.get('/metadata/client', function(req, res) {
-        setTimeout(() => {
-          res.json(mock)
-        }, 800)
-      })
-      app.get('/starter.zip', function(req, res) {
-        fs.readFile(path.resolve('./dev/starter.zip'), (err, data) => {
-          if (err) return sendError(err, res)
-          setTimeout(() => {
-            res.send(data)
-          }, 800)
-        })
-      })
-    },
+    proxy: {
+      '/metadata/client': 'http://localhost:8181',
+      '/starter.zip': 'http://localhost:8181'
+    }
+  //   before: function(app, server, compiler) {
+  //     app.get('/metadata/client', function(req, res) {
+  //       setTimeout(() => {
+  //         res.json(mock)
+  //       }, 800)
+  //     })
+  //     app.get('/starter.zip', function(req, res) {
+  //       fs.readFile(path.resolve('./dev/starter.zip'), (err, data) => {
+  //         if (err) return sendError(err, res)
+  //         setTimeout(() => {
+  //           res.send(data)
+  //         }, 800)
+  //       })
+  //     })
+  //   },
   },
 }
 
